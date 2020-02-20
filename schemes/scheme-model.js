@@ -29,7 +29,7 @@ function add (scheme) {
 }
 function addStep (steps, scheme_id) {
     return db('steps')
-    .where('steps.scheme_id', '=', scheme_id)
+    .where({scheme_id})
     .insert(steps, 'id');
 }
 function remove(id){
