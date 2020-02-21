@@ -29,6 +29,12 @@ async function add (scheme) {
     console.log(scheme);
     const [id] = await db('schemes').insert(scheme) //inserts new data and abstracts the id
     return db('schemes').where({id}).first() //return db call for row that matches the abstracted id
+
+    //different version
+
+    // const ids = await db('schemes').insert(scheme)
+    // const id = ids[0]
+    // return db('schemes').where({id}).first()
 }
 function addStep (steps, scheme_id) {
     return db('steps')
