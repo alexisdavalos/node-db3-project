@@ -20,12 +20,15 @@ function findById(id){
 }
 function findSteps(id) {
     return db('schemes as s')
-    .join('steps as st')
+    .join('steps as st', 's.id', 'st.scheme_id' )
     .select('st.id', 's.scheme_name', 'st.step_number', 'st.instructions', 'st.scheme_id')
-    .where('st.scheme_id', id);
+    .where('s.id', id);
 }
-function add (scheme) {
-    return db('schemes').insert(scheme, 'id');
+//ASYNC RETURNS OBJECTS AFTER DB FETCH
+async function add (scheme) {
+    console.log(scheme);
+    const [id] = await db('schemes').insert(scheme) //inserts new data and abstracts the id
+    return db('schemes').where({id}).first() //return db call for row that matches the abstracted id
 }
 function addStep (steps, scheme_id) {
     return db('steps')

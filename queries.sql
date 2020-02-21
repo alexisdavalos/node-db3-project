@@ -41,3 +41,10 @@
     FROM [Order] as o
     INNER JOIN [Customer] as c
     ON o.CustomerId = c.Id
+
+
+SELECT *
+
+FROM schemes as s
+INNER JOIN Steps as st ON s.id = st.scheme_id
+WHERE s.id, *js function*
